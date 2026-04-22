@@ -1,25 +1,72 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testes javascript</title>
+  <meta charset="UTF-8">
+  <title>Pac-Man Game</title>
+  <style>
+    body {
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: white;
+      font-family: Arial;
+    }canvas {
+  background: #000;
+  border: 2px solid yellow;
+}
+
+  </style>
 </head>
 <body>
-    <script>
-        console.log("hello world");
-console.log(0123456789);
-console.log("isabelly");
-x=8+9;
-console.log(x);
-y=81;
-z=9;
-t=y+z;
-console.log(t);
-console.log("o resultado é:",t);
-console.log("o outro resultado é:",x);
-    </script>
+<canvas id="game" width="400" height="400"></canvas><script>
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
 
-    <script src="teste2.js"></script>
-</body>
-</html>
+const tileSize = 20;
+const rows = 20;
+const cols = 20;
+
+let pacman = {
+  x: 1,
+  y: 1,
+  dx: 0,
+  dy: 0
+};
+
+let ghost = {
+  x: 18,
+  y: 18,
+  dx: 0,
+  dy: 0
+};
+
+let map = [];
+for (let y = 0; y < rows; y++) {
+  map[y] = [];
+  for (let x = 0; x < cols; x++) {
+    if (y === 0 || y === rows-1 || x === 0 || x === cols-1 || (x%4===0 && y%4===0)) {
+      map[y][x] = 1; // parede
+    } else {
+      map[y][x] = 2; // ponto
+    }
+  }
+}
+
+function drawMap() {
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (map[y][x] === 1) {
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(x*tileSize, y*tileSize, tileSize, tileSize);
+      }
+      if (map[y][x] === 2) {
+        ctx.fillStyle = 'white';
+        ctx.beginPath();
+        ctx.arc(x*tileSize+tileSize/2, y*tileSize+tileSize/2, 3, 0, Math.PI*2);
+        ctx.fill();
+      }
+    }
+  }
+}
