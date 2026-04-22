@@ -1,11 +1,20 @@
-console.log("hello world");
-console.log(0123456789);
-console.log("isabelly");
-x=8+9;
-console.log(x);
-y=81;
-z=9;
-t=y+z;
-console.log(t);
-console.log("o resultado é:",t);
-console.log("o outro resultado é:",x);
+body {
+  background: black;
+  color: yellow;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  margin-top: 10px;
+}
+
+#score {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+canvas {
+  background: #000;
+  border: 3px solid yellow;
+}
